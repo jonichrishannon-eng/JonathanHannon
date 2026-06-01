@@ -1,0 +1,158 @@
+---
+import { Image } from 'astro:assets';
+import signatureImg from '../assets/signature.jpg';
+---
+
+<footer id="contact" class="relative w-full py-24 lg:py-32 px-6 lg:px-16 bg-cyber-darker/95 flex flex-col items-center overflow-hidden border-t border-white/5 z-10">
+  
+  <!-- Backlight Glows -->
+  <div class="absolute bottom-0 right-1/4 w-[350px] h-[350px] bg-cyber-blue/5 rounded-full blur-[90px] pointer-events-none z-0"></div>
+  <div class="absolute bottom-0 left-1/4 w-[350px] h-[350px] bg-cyber-rose/5 rounded-full blur-[90px] pointer-events-none z-0"></div>
+
+  <div class="max-w-7xl mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20 contact-grid">
+    
+    <!-- Left Column: Form Info -->
+    <div class="lg:col-span-5 flex flex-col justify-center contact-info-column">
+      <span class="font-outfit text-xs lg:text-sm tracking-[0.3em] uppercase text-cyber-blue font-semibold mb-3">
+        Let's Collaborate
+      </span>
+      <h2 class="font-outfit text-3xl sm:text-5xl font-extrabold text-white tracking-tight uppercase leading-none mb-6">
+        Let's Build <br />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-blue to-cyber-rose text-cyber-glow">The Future</span>
+      </h2>
+      <p class="font-exo text-sm sm:text-base text-cyber-gray leading-relaxed max-w-md mb-8">
+        Have a project, dynamic venture, or inventive idea you would like to bring to life? Drop a message and let's forge a premium, professional digital architecture together.
+      </p>
+
+      <!-- Contact details -->
+      <div class="space-y-4 font-exo text-sm text-cyber-gray/95">
+        <div class="flex items-center gap-4 group">
+          <div class="w-10 h-10 rounded-xl bg-cyber-blue/10 flex items-center justify-center text-cyber-blue">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+            </svg>
+          </div>
+          <span class="group-hover:text-cyber-blue transition-colors duration-300">jonathan@pidea.future</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Glassmorphic Contact Form -->
+    <div class="lg:col-span-7 contact-form-wrapper">
+      <form id="contactForm" class="glass-panel p-8 sm:p-12 rounded-3xl border border-white/5 relative shadow-2xl space-y-6">
+        
+        <!-- Grid inputs -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="flex flex-col space-y-2">
+            <label for="name" class="font-outfit text-xs tracking-wider uppercase text-cyber-gray font-semibold">Name</label>
+            <input 
+              type="text" 
+              id="name" 
+              required
+              placeholder="Your Name"
+              class="font-exo text-sm bg-cyber-darker/60 text-white placeholder-cyber-gray/40 border border-white/10 rounded-xl px-4 py-3.5 focus:outline-none focus:border-cyber-blue/80 focus:ring-1 focus:ring-cyber-blue/40 transition-all duration-300"
+            />
+          </div>
+          <div class="flex flex-col space-y-2">
+            <label for="email" class="font-outfit text-xs tracking-wider uppercase text-cyber-gray font-semibold">Email</label>
+            <input 
+              type="email" 
+              id="email" 
+              required
+              placeholder="your@email.com"
+              class="font-exo text-sm bg-cyber-darker/60 text-white placeholder-cyber-gray/40 border border-white/10 rounded-xl px-4 py-3.5 focus:outline-none focus:border-cyber-blue/80 focus:ring-1 focus:ring-cyber-blue/40 transition-all duration-300"
+            />
+          </div>
+        </div>
+
+        <div class="flex flex-col space-y-2">
+          <label for="message" class="font-outfit text-xs tracking-wider uppercase text-cyber-gray font-semibold">Message</label>
+          <textarea 
+            id="message" 
+            rows="5"
+            required
+            placeholder="Tell me about your inventive vision..."
+            class="font-exo text-sm bg-cyber-darker/60 text-white placeholder-cyber-gray/40 border border-white/10 rounded-xl px-4 py-3.5 focus:outline-none focus:border-cyber-blue/80 focus:ring-1 focus:ring-cyber-blue/40 transition-all duration-300 resize-none"
+          ></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button 
+          type="submit"
+          class="w-full font-outfit text-xs tracking-widest uppercase font-semibold text-cyber-dark bg-cyber-blue py-4 rounded-xl shadow-lg shadow-cyber-blue/10 hover:bg-white hover:shadow-white/5 transition-all duration-300 transform active:scale-[0.98]"
+        >
+          Send Message
+        </button>
+
+      </form>
+    </div>
+
+  </div>
+
+  <!-- Divider -->
+  <div class="w-full max-w-7xl h-px bg-white/5 mb-16"></div>
+
+  <!-- Footer Branding and Copyright -->
+  <div class="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left footer-bottom">
+    
+    <!-- Inverted screen-blended handwritten signature -->
+    <a href="#top" class="h-10 w-auto overflow-hidden select-none cursor-pointer filter hover:brightness-110 transition-all duration-300">
+      <Image 
+        src={signatureImg} 
+        alt="J. Hannon Signature" 
+        class="h-full w-auto object-contain filter invert brightness-125 mix-blend-screen scale-110 origin-left"
+      />
+    </a>
+
+    <!-- Copyright -->
+    <span class="font-exo text-xs text-cyber-gray/50 tracking-wider">
+      &copy; {new Date().getFullYear()} Jonathan Hannon. All Rights Reserved. Crafted with Astro & GSAP.
+    </span>
+
+  </div>
+
+</footer>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+    // Register ScrollTrigger with GSAP
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Fade and slide contact info on scroll
+    gsap.from('.contact-info-column', {
+      opacity: 0,
+      x: -40,
+      duration: 1.0,
+      scrollTrigger: {
+        trigger: '#contact',
+        start: 'top 75%',
+        toggleActions: 'play none none none'
+      }
+    });
+
+    // Fade and slide contact form on scroll
+    gsap.from('.contact-form-wrapper', {
+      opacity: 0,
+      y: 40,
+      duration: 0.8,
+      delay: 0.2,
+      scrollTrigger: {
+        trigger: '#contact',
+        start: 'top 75%',
+        toggleActions: 'play none none none'
+      }
+    });
+
+    // Form submission effect
+    const form = document.getElementById('contactForm');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Your message has been logged! Thank you for collaborating.');
+        form.reset();
+      });
+    }
+  });
+</script>

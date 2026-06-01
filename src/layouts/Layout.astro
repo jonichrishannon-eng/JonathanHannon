@@ -1,0 +1,45 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "Jonathan Hannon | Creative, Inventive & Professional Portfolio", 
+  description = "Explore the creative portfolio and professional innovations of Jonathan Hannon. High-end GSAP animations, Tailwind CSS, and next-gen interface designs."
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- SEO Optimization -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    
+    <!-- Google Fonts Preloads -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet" />
+
+    <!-- GreenSock GSAP Animation Engine CDN -->
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  </head>
+  <body class="bg-cyber-darker text-gray-100 antialiased min-h-screen selection:bg-cyber-blue selection:text-cyber-dark">
+    <!-- Main Content Layout -->
+    <main class="relative w-full min-h-screen flex flex-col">
+      <slot />
+    </main>
+  </body>
+</html>
