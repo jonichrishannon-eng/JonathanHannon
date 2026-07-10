@@ -1,90 +1,161 @@
 ---
-import { Image } from 'astro:assets';
-import signatureImg from '../assets/signature.jpg';
+import { Image } from "astro:assets";
+import signatureImg from "../assets/signature.jpg";
 ---
 
-<header id="mainHeader" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out py-6 px-6 lg:px-16 border-b border-transparent">
+<header
+  id="mainHeader"
+  class="fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out py-6 px-6 lg:px-16 border-b border-transparent"
+>
   <div class="max-w-7xl mx-auto flex items-center justify-between">
-    
     <!-- Handwritten Signature Logo -->
-    <a href="#top" class="relative group flex items-center select-none cursor-pointer">
-      <div class="h-10 lg:h-12 w-auto overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.6)]">
-        <Image 
-          src={signatureImg} 
-          alt="J. Hannon Signature" 
+    <a
+      href="#top"
+      class="relative group flex items-center select-none cursor-pointer"
+    >
+      <div
+        class="h-10 lg:h-12 w-auto overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.6)]"
+      >
+        <Image
+          src={signatureImg}
+          alt="J. Hannon Signature"
           class="h-full w-auto object-contain filter invert brightness-125 mix-blend-screen scale-110 origin-left"
         />
       </div>
     </a>
 
     <!-- Navigation Links (Hidden on Mobile) -->
-    <nav class="hidden md:flex items-center space-x-8 font-outfit text-sm tracking-widest text-cyber-gray uppercase">
-      <a href="#top" class="hover:text-cyber-blue transition-colors duration-300 font-medium">Home</a>
-      <a href="#about" class="hover:text-cyber-blue transition-colors duration-300 font-medium">About</a>
-      <a href="#pidea" class="hover:text-cyber-blue transition-colors duration-300 font-medium font-semibold text-cyber-gold tracking-widest text-cyber-glow">PIDEA</a>
-      <a href="#contact" class="hover:text-cyber-blue transition-colors duration-300 font-medium">Contact</a>
+    <nav
+      class="hidden md:flex items-center space-x-8 font-outfit text-sm tracking-widest text-cyber-gray uppercase"
+    >
+      <a
+        href="#top"
+        class="hover:text-cyber-blue transition-colors duration-300 font-medium"
+        >Home</a
+      >
+      <a
+        href="#about"
+        class="hover:text-cyber-blue transition-colors duration-300 font-medium"
+        >About</a
+      >
+      <a
+        href="#pidea"
+        class="hover:text-cyber-blue transition-colors duration-300 font-semibold text-cyber-gold tracking-widest text-cyber-glow"
+        >PIDEA</a
+      >
+      <a
+        href="#contact"
+        class="hover:text-cyber-blue transition-colors duration-300 font-medium"
+        >Contact</a
+      >
     </nav>
 
     <!-- Call to Action Button -->
     <div class="hidden md:block">
-      <a 
-        href="#contact" 
+      <a
+        href="#contact"
         class="relative font-outfit text-xs tracking-widest uppercase text-cyber-blue px-6 py-3 border border-cyber-blue/30 rounded-full overflow-hidden group transition-all duration-300 hover:border-cyber-blue hover:text-cyber-dark inline-block"
       >
-        <span class="absolute inset-0 w-full h-full bg-cyber-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-0"></span>
-        <span class="relative z-10 transition-colors duration-300">Collaborate</span>
+        <span
+          class="absolute inset-0 w-full h-full bg-cyber-blue transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-0"
+        ></span>
+        <span class="relative z-10 transition-colors duration-300"
+          >Collaborate</span
+        >
       </a>
     </div>
 
     <!-- Mobile Menu Button -->
-    <button id="mobileMenuBtn" aria-label="Toggle Menu" class="md:hidden text-cyber-blue focus:outline-none flex flex-col justify-between w-6 h-4 group">
-      <span class="w-full h-0.5 bg-cyber-blue rounded transition-transform duration-300 origin-top-left group-hover:translate-x-1"></span>
-      <span class="w-full h-0.5 bg-cyber-blue rounded transition-opacity duration-300"></span>
-      <span class="w-full h-0.5 bg-cyber-blue rounded transition-transform duration-300 origin-bottom-left group-hover:translate-x-1"></span>
+    <button
+      id="mobileMenuBtn"
+      aria-label="Toggle Menu"
+      class="md:hidden text-cyber-blue focus:outline-none flex flex-col justify-between w-6 h-4 group"
+    >
+      <span
+        class="w-full h-0.5 bg-cyber-blue rounded transition-transform duration-300 origin-top-left group-hover:translate-x-1"
+      ></span>
+      <span
+        class="w-full h-0.5 bg-cyber-blue rounded transition-opacity duration-300"
+      ></span>
+      <span
+        class="w-full h-0.5 bg-cyber-blue rounded transition-transform duration-300 origin-bottom-left group-hover:translate-x-1"
+      ></span>
     </button>
-
   </div>
 
   <!-- Mobile Dropdown Navigation Drawer -->
-  <div id="mobileMenu" class="md:hidden fixed top-0 left-0 w-full h-screen bg-cyber-darker/98 z-40 transform translate-x-full transition-transform duration-500 ease-in-out flex flex-col justify-center items-center space-y-8 font-outfit text-xl uppercase tracking-widest">
-    <a href="#top" class="mobile-nav-link text-cyber-gray hover:text-cyber-blue transition-colors duration-300">Home</a>
-    <a href="#about" class="mobile-nav-link text-cyber-gray hover:text-cyber-blue transition-colors duration-300">About</a>
-    <a href="#pidea" class="mobile-nav-link text-cyber-gold text-cyber-glow hover:text-cyber-blue transition-colors duration-300">PIDEA</a>
-    <a href="#contact" class="mobile-nav-link text-cyber-gray hover:text-cyber-blue transition-colors duration-300">Contact</a>
-    <a href="#contact" class="px-8 py-3 border border-cyber-blue text-cyber-blue rounded-full hover:bg-cyber-blue hover:text-cyber-dark transition-all duration-300">Collaborate</a>
+  <div
+    id="mobileMenu"
+    class="md:hidden fixed top-0 left-0 w-full h-screen bg-cyber-darker/98 z-40 transform translate-x-full transition-transform duration-500 ease-in-out flex flex-col justify-center items-center space-y-8 font-outfit text-xl uppercase tracking-widest"
+  >
+    <a
+      href="#top"
+      class="mobile-nav-link text-cyber-gray hover:text-cyber-blue transition-colors duration-300"
+      >Home</a
+    >
+    <a
+      href="#about"
+      class="mobile-nav-link text-cyber-gray hover:text-cyber-blue transition-colors duration-300"
+      >About</a
+    >
+    <a
+      href="#pidea"
+      class="mobile-nav-link text-cyber-gold text-cyber-glow hover:text-cyber-blue transition-colors duration-300"
+      >PIDEA</a
+    >
+    <a
+      href="#contact"
+      class="mobile-nav-link text-cyber-gray hover:text-cyber-blue transition-colors duration-300"
+      >Contact</a
+    >
+    <a
+      href="#contact"
+      class="px-8 py-3 border border-cyber-blue text-cyber-blue rounded-full hover:bg-cyber-blue hover:text-cyber-dark transition-all duration-300"
+      >Collaborate</a
+    >
   </div>
 </header>
 
 <script>
-  const header = document.getElementById('mainHeader');
-  const mobileBtn = document.getElementById('mobileMenuBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+  const header = document.getElementById("mainHeader");
+  const mobileBtn = document.getElementById("mobileMenuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const mobileLinks = document.querySelectorAll(".mobile-nav-link");
 
   // Change Header background on scroll
-  window.addEventListener('scroll', () => {
+  window.addEventListener("scroll", () => {
     if (header) {
       if (window.scrollY > 20) {
-        header.classList.remove('py-6');
-        header.classList.add('py-4', 'bg-cyber-dark/80', 'backdrop-blur-md', 'border-cyber-blue/10');
+        header.classList.remove("py-6");
+        header.classList.add(
+          "py-4",
+          "bg-cyber-dark/80",
+          "backdrop-blur-md",
+          "border-cyber-blue/10",
+        );
       } else {
-        header.classList.remove('py-4', 'bg-cyber-dark/80', 'backdrop-blur-md', 'border-cyber-blue/10');
-        header.classList.add('py-6');
+        header.classList.remove(
+          "py-4",
+          "bg-cyber-dark/80",
+          "backdrop-blur-md",
+          "border-cyber-blue/10",
+        );
+        header.classList.add("py-6");
       }
     }
   });
 
   // Mobile menu toggle
   if (mobileBtn && mobileMenu) {
-    mobileBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('translate-x-full');
-      mobileBtn.classList.toggle('active');
+    mobileBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("translate-x-full");
+      mobileBtn.classList.toggle("active");
     });
 
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('translate-x-full');
-        mobileBtn.classList.remove('active');
+    mobileLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.add("translate-x-full");
+        mobileBtn.classList.remove("active");
       });
     });
   }
