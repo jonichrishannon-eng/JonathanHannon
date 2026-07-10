@@ -7,6 +7,8 @@ import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://jonichrishannon-eng.github.io',
+  base: '/JonathanHannon',
   integrations: [react(), tailwind(), mdx(), vue({ jsx: true })],
 
   image: {
