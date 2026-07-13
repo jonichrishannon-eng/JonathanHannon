@@ -15,9 +15,5 @@ export default defineConfig({
     service: {
       entrypoint: 'astro/assets/services/noop'
     }
-  },
-
-  adapter: node({
-    mode: 'standalone'
-  })
+  }
 });

@@ -1,0 +1,265 @@
+---
+---
+
+<section id="universeHero" class="relative w-full bg-black text-white">
+  <div class="pin-container relative w-full h-screen overflow-hidden flex items-center justify-center">
+    <!-- 3D Canvas Background -->
+    <canvas id="universeCanvas" class="absolute inset-0 w-full h-full z-0"></canvas>
+
+    <!-- Content Container (Pinned and animated by GSAP) -->
+    <div class="relative z-10 w-full h-full flex flex-col items-center justify-center pointer-events-none px-6 text-center">
+
+    <!-- Scene 1: The Intro -->
+    <div id="scene1-text" class="absolute inset-0 flex items-center justify-center opacity-100 flex-col">
+      <h2 class="font-outfit text-4xl sm:text-6xl md:text-7xl font-light tracking-wide text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.8)]">
+        It's time to see the universe
+      </h2>
+      <h2 class="font-outfit text-5xl sm:text-7xl md:text-8xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-cyber-rose mt-2 drop-shadow-[0_0_20px_rgba(168,85,247,0.8)] uppercase">
+        Through my eyes
+      </h2>
+    </div>
+
+    <!-- Scene 2: Timeline -->
+    <div id="scene2-timeline" class="absolute inset-0 flex flex-col items-center justify-center opacity-0 transform translate-y-20">
+      <h3 class="font-exo text-2xl sm:text-4xl text-cyber-blue font-bold tracking-widest uppercase mb-10 drop-shadow-[0_0_10px_rgba(0,255,255,0.5)]">
+        Human Civilization Timeline
+      </h3>
+
+      <!-- Interactive Scroll Bar Container -->
+      <div class="relative w-full max-w-4xl h-2 bg-white/20 rounded-full mt-8">
+        <div id="timeline-progress" class="absolute top-0 left-0 h-full bg-gradient-to-r from-cyber-blue to-cyber-gold rounded-full w-0 shadow-[0_0_15px_rgba(0,255,255,0.8)]"></div>
+
+        <!-- Markers -->
+        <div class="absolute top-[-30px] left-0 transform -translate-x-1/2 flex flex-col items-center">
+          <span class="text-xs font-bold text-white/80">3000 BCE</span>
+          <div class="w-1 h-3 bg-white/50 mt-1"></div>
+        </div>
+
+        <div class="absolute top-[-30px] left-[33%] transform -translate-x-1/2 flex flex-col items-center">
+          <span class="text-xs font-bold text-white/80">476 CE</span>
+          <div class="w-1 h-3 bg-white/50 mt-1"></div>
+        </div>
+
+        <div class="absolute top-[-30px] left-[66%] transform -translate-x-1/2 flex flex-col items-center">
+          <span class="text-xs font-bold text-white/80">1492 CE</span>
+          <div class="w-1 h-3 bg-white/50 mt-1"></div>
+        </div>
+
+        <div class="absolute top-[-30px] right-0 transform translate-x-1/2 flex flex-col items-center">
+          <span class="text-xs font-bold text-white/80">Present</span>
+          <div class="w-1 h-3 bg-white/50 mt-1"></div>
+        </div>
+      </div>
+
+      <!-- Dynamic Event Text -->
+      <div class="h-20 mt-16 flex items-center justify-center">
+        <p id="timeline-event" class="font-outfit text-xl sm:text-3xl text-cyber-gray italic tracking-wider transition-all duration-300">
+          The Dawn of Mesopotamia
+        </p>
+      </div>
+    </div>
+
+    <!-- Scene 3: The Future (PIDEA Logo is rendered via three.js in the background) -->
+    <div id="scene3-future" class="absolute inset-0 flex flex-col items-center justify-center opacity-0 transform scale-90">
+      <div class="mt-[30vh]">
+        <h2 class="font-outfit text-4xl sm:text-6xl md:text-8xl font-black text-white uppercase tracking-[0.2em] leading-tight text-center drop-shadow-[0_0_25px_rgba(255,215,0,0.8)]">
+          The time for innovation <br/> <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-gold via-yellow-300 to-orange-500">is now.</span>
+        </h2>
+        <h3 class="font-exo text-2xl sm:text-4xl text-cyber-blue font-bold tracking-widest uppercase mt-6 drop-shadow-[0_0_15px_rgba(0,255,255,0.8)] text-center">
+          Welcome to the Future
+        </h3>
+      </div>
+    </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  #universeHero {
+    /* Large scrolling space to give the pinning effect time */
+    height: 400vh;
+  }
+
+  /* Prevent scrolling content from misaligning */
+  .pin-container {
+    height: 100vh !important;
+    position: relative;
+    overflow: hidden;
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import * as THREE from 'three';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // === THREE.JS SETUP ===
+  const canvas = document.getElementById('universeCanvas') as HTMLCanvasElement;
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x000000);
+
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.z = 15;
+
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  // --- The "Big Bang" Particles ---
+  const particlesGeometry = new THREE.BufferGeometry();
+  const particlesCount = 3000;
+  const posArray = new Float32Array(particlesCount * 3);
+
+  for(let i = 0; i < particlesCount * 3; i++) {
+    // start them all clustered in the center
+    posArray[i] = (Math.random() - 0.5) * 0.1;
+  }
+  particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+  const particlesMaterial = new THREE.PointsMaterial({
+    size: 0.05,
+    color: 0x00ffff,
+    transparent: true,
+    opacity: 0.8,
+    blending: THREE.AdditiveBlending
+  });
+
+  const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+  scene.add(particlesMesh);
+
+  // --- The 3D PIDEA Logo Coin ---
+  const textureLoader = new THREE.TextureLoader();
+  const basePath = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
+  const logoTexture = textureLoader.load(`${basePath.replace(/\/$/, '')}/pidea-logo.jfif`);
+
+  const coinGeometry = new THREE.CylinderGeometry(5, 5, 0.5, 64);
+  // Materials for sides and faces
+  const sideMaterial = new THREE.MeshStandardMaterial({
+    color: 0xffd700,
+    metalness: 1,
+    roughness: 0.2
+  });
+  const faceMaterial = new THREE.MeshStandardMaterial({
+    map: logoTexture,
+    metalness: 0.8,
+    roughness: 0.3
+  });
+
+  const coinMesh = new THREE.Mesh(coinGeometry, [sideMaterial, faceMaterial, faceMaterial]);
+
+  // Initially rotate it to face the camera properly (cylinder default is flat)
+  coinMesh.rotation.x = Math.PI / 2;
+  // Initially hide it
+  coinMesh.position.y = -20;
+  coinMesh.scale.set(0.01, 0.01, 0.01);
+  scene.add(coinMesh);
+
+  // Lighting
+  const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+  scene.add(ambientLight);
+
+  const pointLight = new THREE.PointLight(0xffffff, 2);
+  pointLight.position.set(10, 10, 10);
+  scene.add(pointLight);
+
+  const goldLight = new THREE.PointLight(0xffd700, 3);
+  goldLight.position.set(-10, -10, 10);
+  scene.add(goldLight);
+
+
+  // Render loop
+  const clock = new THREE.Clock();
+
+  function tick() {
+    const elapsedTime = clock.getElapsedTime();
+
+    // Slow rotation of particles
+    particlesMesh.rotation.y = elapsedTime * 0.05;
+
+    // Animate coin spinning when it's visible
+    if (coinMesh.scale.x > 0.1) {
+      coinMesh.rotation.y += 0.01;
+      coinMesh.rotation.z = Math.sin(elapsedTime * 2) * 0.1; // subtle tilt
+    }
+
+    renderer.render(scene, camera);
+    window.requestAnimationFrame(tick);
+  }
+  tick();
+
+  // Handle Resize
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+
+  // === GSAP SCROLL ANIMATIONS ===
+
+  // Wrap everything to create a pinned section container in DOM
+  const heroWrapper = document.getElementById('universeHero');
+
+  // We'll create a master timeline for the scroll
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: heroWrapper,
+      start: "top top",
+      end: "bottom bottom",
+      scrub: 1,
+      pin: ".pin-container", // We need to wrap the contents in a pin container
+    }
+  });
+
+  // Array to hold original particle positions to calculate expansion
+  const originalPositions = new Float32Array(particlesCount * 3);
+  for(let i=0; i < particlesCount * 3; i++) {
+    originalPositions[i] = (Math.random() - 0.5) * 50; // Final scattered positions
+  }
+
+  // Helper object to animate particle explosion
+  const explosionObj = { progress: 0 };
+
+  tl.to("#scene1-text", { opacity: 0, scale: 1.5, duration: 1 })
+    // Big Bang Explosion
+    .to(explosionObj, {
+      progress: 1,
+      duration: 2,
+      onUpdate: () => {
+        const positions = particlesGeometry.attributes.position.array as Float32Array;
+        for(let i = 0; i < particlesCount * 3; i++) {
+           positions[i] = THREE.MathUtils.lerp(
+             (Math.random() - 0.5) * 0.1, // Center
+             originalPositions[i],        // Outward
+             explosionObj.progress
+           );
+        }
+        particlesGeometry.attributes.position.needsUpdate = true;
+      }
+    }, "<")
+    // Scene 2: Timeline
+    .to("#scene2-timeline", { opacity: 1, y: 0, duration: 1 })
+    // Animate Timeline Progress Bar
+    .to("#timeline-progress", {
+      width: "100%",
+      duration: 4,
+      onUpdate: function() {
+        // Change text based on progress
+        const prog = this.progress();
+        const textEl = document.getElementById("timeline-event");
+        if (prog < 0.25) textEl.innerText = "The Dawn of Mesopotamia";
+        else if (prog < 0.5) textEl.innerText = "Fall of the Roman Empire";
+        else if (prog < 0.75) textEl.innerText = "The Renaissance & Discovery";
+        else textEl.innerText = "The Digital Age";
+      }
+    })
+    .to("#scene2-timeline", { opacity: 0, y: -50, duration: 1 })
+    // Scene 3: The Future (Bring up Coin and Text)
+    .to(coinMesh.position, { y: 2, duration: 2 }, "<")
+    .to(coinMesh.scale, { x: 1, y: 1, z: 1, duration: 2, ease: "back.out(1.7)" }, "<")
+    .to("#scene3-future", { opacity: 1, scale: 1, duration: 2 }, "<");
+
+</script>
